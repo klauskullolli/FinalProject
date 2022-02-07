@@ -1,7 +1,7 @@
 <?php
 $title = 'Update User';
 
-require_once 'header.php';
+require_once 'common/header.php';
 require_once 'db/conn.php';
 
 $reset_form = false;
@@ -90,3 +90,7 @@ $reset_form = false;
 </div>
 <button name="submit" type="submit" class="btn btn-primary">Submit</button>
 </form>  
+
+<?php
+    require_once 'common/footer.php';
+?>

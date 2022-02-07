@@ -1,7 +1,7 @@
 <?php
 $title = 'Delete User';
 
-require_once 'header.php';
+require_once 'common/header.php';
 require_once 'db/conn.php';
 
 // if(!isset($_SESSION["authenticated"])){
@@ -25,4 +25,6 @@ require_once 'db/conn.php';
                     User deletion failed!
                 </div>';
     }
+
+    require_once 'common/footer.php';
 ?>
