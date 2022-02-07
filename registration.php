@@ -9,12 +9,13 @@ if (isset($_POST['submit'])) {
     $clean = array();
     $validation_messages = array();
 
-    $trimmed_username = trim($_POST['username']);
-    if (strlen($trimmed_username) == 0) {
+    
+    if (!isset($_POST['username'])) {
         $validation_messages['username'] = 'Username cannot be empty!';
-    } else if (!preg_match('/^[a-zA-Z0-9_]+$/', $trimmed_username)) {
+    } else if (!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST['username']))) {
         $validation_messages['username'] = 'Username can only have digits, letters and _';
     } else {
+        $trimmed_username = trim($_POST['username']);
         $sql = "select * from user where username = :username";
         $stmt = $pdo -> prepare($sql);
         $stmt -> bindParam(":username", $trimmed_username);
@@ -35,8 +36,8 @@ if (isset($_POST['submit'])) {
     }
     
     if (count($validation_messages) === 0) {
-        $hashed_password = password_hash($trimmed_password, PASSWORD_DEFAULT);
-        $data = array('username' => $clean['username'], 'password' => $hashed_password, 'role' => $_POST["role"]);
+        // $hashed_password = password_hash($trimmed_password, PASSWORD_DEFAULT);
+        $data = array('username' => $clean['username'], 'password' => $trimmed_password, 'role' => $_POST["role"]);
         if (insert_record('user', $data)) {
             $reset_form = true;
             echo '<div class="alert alert-success" role="alert">
