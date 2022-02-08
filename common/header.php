@@ -28,6 +28,9 @@
         <li class="nav-item">
             <a class="nav-link" aria-current="page" href="user.php">Users</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="addClothes.php">Add Clothes</a>
+        </li>
         <div class="dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Clothes
@@ -39,16 +42,6 @@
         </ul>
         </div>
 
-        <!-- <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Dresses</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">T-shirts</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Pants</a>
-        </li> -->
-        <!-- <li class="nav-item"><a class="nav-link" aria-current="page" href="logout.php">Logut</a></li> -->
          
         <li class="nav-item">
           <div class="position-absolute top-50 start-100 translate-middle">

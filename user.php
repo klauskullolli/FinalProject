@@ -33,13 +33,35 @@ $rows = select_all('user');
             <td>' . $row['role'] . '</td>
             <td>
                 <a class="btn btn-primary" href="updateUser.php?user_id=' . $row['id'] .'">Update</a>
-                <a class="btn btn-danger" href="#?user_id=' . $row['id'] .'">Delete</a>
+                <button class="btn btn-danger delete" id="'. $row['id'] .'">Delete</button>
             </td>
         </tr>';
         }
     ?>
 </tbody>
 </table>
+
+<script>
+  const buttons = document.querySelectorAll(".delete") ; 
+  buttons.forEach(btn => {
+      btn.addEventListener("click", ()=>{
+          const id = btn.getAttribute("id"); 
+          const url = "api/user/delete.php" ;
+          fetch(url , {
+              method: "POST", 
+              headers:{
+                'Content-Type': 'application/json',
+              },
+              body : JSON.stringify({id}),
+              }
+              ).then((result)=>{
+                  console.log(result);
+                  if(result.status==204)
+                  btn.parentNode.parentNode.remove() ;
+          }).catch(console.error);
+      })
+  }) ;
+</script>
 
 <?php
 require_once "common/footer.php" ;

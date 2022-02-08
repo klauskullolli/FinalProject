@@ -57,7 +57,10 @@ if (isset($_POST['submit'])) {
 </h1>
 
 <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-  <div class="mb-3">
+    
+    <div class="mb-3">
+
+    <!-- Username -->
     <label for="username" class="form-label">Username</label>
     <input type="text" class="form-control" id="username" name="username"
     value="<?php echo (isset($_POST['username'])  && !$reset_form) ? 
