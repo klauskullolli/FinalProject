@@ -1,0 +1,71 @@
+<?php
+
+$title = "Clothes" ; 
+require_once 'common/header.php';
+
+?>
+
+
+<script>
+
+
+    function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+   
+    const Http = new XMLHttpRequest();
+    const url = "/FinalProject/api/clothes/list.php" ; 
+    
+    var panel = document.querySelector(".container") ;
+   
+    Http.open("GET", url);
+    Http.send() ;
+    Http.onreadystatechange= ()=>{
+        if(Http.readyState===XMLHttpRequest.DONE){
+            var grid = "";
+            const row =`<div  class="row"  style="margin-top: 50px;">`;
+            var j = 1 ; 
+            var clothes = JSON.parse(Http.responseText) ;
+            if(clothes.length==0){
+                panel.innerHTML = panel.innerHTML + `<div class="alert alert-danger" role="alert">
+                    There are no clothes yet!
+                </div>`
+            }
+            else {
+                var length = clothes.length-1 ;
+            for (var i in clothes){
+                
+                var cell = `
+                            <div class="col">
+                                <h3 class="text-info">${capitalizeFirstLetter(clothes[i]['type'])}</h3>
+                                <a href="clothPanel.php?id=\'${clothes[i]["id"]}\'"><img src="${clothes[i]["image"]}" width="200" , height="200"></a>
+                                <h3 class="text-info">Price ${clothes[i]['price']}$</h3>
+                            </div>
+                            `;
+                            
+                if(j==1){
+                    grid = row + cell ;
+                }
+                
+                else if( i==length || j==3){
+                    grid = grid + cell + '</div>' ;
+                    j==0 ;
+                    console.log("yes") ;
+                }
+                else{
+                    grid = grid + cell ;
+                }
+                j++ ;
+                console.log(grid) ;
+            }
+            panel.innerHTML = panel.innerHTML + grid + "</div>" ;
+            }
+            
+    }
+    } ; 
+    
+
+</script>
+
+
+
