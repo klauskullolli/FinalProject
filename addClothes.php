@@ -119,7 +119,7 @@ if(isset($_POST['submit'])){
   <!-- Price -->
   <div class="mb-3">
     <label for="price" class="form-label">Price</label>
-    <input type="number" class="form-control" id="price" name="price"
+    <input type="number" class="form-control" id="price" name="price" step="0.01"
     value="<?php echo (isset($_POST['price'])  && !$reset_form) ? 
                             htmlentities($_POST['price']) : 
                             ''; ?>">

@@ -10,9 +10,7 @@
     $stmt -> execute();
     
     if($stmt ->rowCount()<=0){
-        echo '<div class="alert alert-danger" role="alert">
-                    No clothes with this id!
-                </div>';
+        header('Location: alert.php?msg=This cloth does not exist!');
 
     }
     else{
@@ -21,6 +19,39 @@
     }
 
 }
+
+if (isset($_POST['submit'])) {
+    $product = array(
+        "type"=> $data["type"],
+        "gender" => $data["gender"],
+        "size" => $data["size"],
+        "price" => $data["price"],
+        "amount"=>$_POST['amount'],
+        "total_price" => $data["price"]*$_POST['amount'],
+        "image" => $data["image"]
+    );
+    $stock = $data["stock"] - $_POST['amount'] ; 
+   
+    if($stock<=0){
+        delete("clothes" ,intval($data["id"])) ;
+    }
+    else{
+        $update = array("stock"=>$stock) ;
+        $updated = update_record("clothes" ,$update, intval($data["id"])) ;
+    }
+
+    if (insert_record('bag', $data) && $updated ) {
+        echo '<div class="alert alert-success" role="alert">
+                Product bought successfully!
+            </div>';
+    } else {
+        echo '<div class="alert alert-danger" role="alert">
+                Product purchase failed!</div>';
+    }
+}
+
+
+
 ?>
 
 <form method="POST" action="">  
@@ -49,9 +80,9 @@
 
             <label for="amount" class="form-label">Amount</label>
             <input type="number" class="form-control" id="amount" name="amount"
-             min="1" max="<?php echo $data["stock"]?>">
+             min="1" max="<?php echo $data["stock"]?>" value="1">
              <br><br>
-             <button name="submit" type="submit" class="btn btn-primary">Buy</button>
+             <button name="submit" type="submit" class="btn btn-primary" style="font-size: 36px;">Buy</button>
         </div>
     </div>
 </div>

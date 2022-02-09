@@ -36,9 +36,7 @@ if (isset($_POST['submit'])) {
     }
     
     if (count($validation_messages) === 0) {
-        // $hashed_password = password_hash($trimmed_password, PASSWORD_DEFAULT);
-        $data = array('username' => $clean['username'], 'password' => $trimmed_password, 'role' => $_POST["role"]);
-        if (insert_record('user', $data)) {
+        if (insert_record('user',  $clean)) {
             $reset_form = true;
             echo '<div class="alert alert-success" role="alert">
                     User registered successfully!
@@ -72,7 +70,7 @@ if (isset($_POST['submit'])) {
                 echo $validation_messages['username'];
         ?>
     </div>
-
+    <!-- Password -->
     <label for="password" class="form-label">Password</label>
     <input type="password" class="form-control" id="password" name="password"
     value="<?php echo (isset($_POST['password'])  && !$reset_form) ? 
@@ -84,6 +82,8 @@ if (isset($_POST['submit'])) {
                 echo $validation_messages['password'];
         ?>
     </div>
+
+    <!-- Role -->
     <label for="role" class="form-label">Select Role</label>
     <select name="role" id="role" class="form-control">
         <option value="admin">ADMIN</option>
