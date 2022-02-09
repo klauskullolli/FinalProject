@@ -16,33 +16,31 @@
 <div class="container">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <div class="container-fluid">
-    <a class="navbar-brand">Shop</a>
+    <a class="navbar-brand"  href="clothes.php">Shop</a>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="registration.php">Register</a>
-        </li>
+            <a class="nav-link" aria-current="page" href="user.php">Users</a>
+        </li>  
+        
         <li class="nav-item">
             <a class="nav-link" aria-current="page" href="login.php">Login</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="user.php">Users</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" aria-current="page" href="addClothes.php">Add Clothes</a>
         </li>
+
         <div class="dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" id="dropdownMenuLink" role="button"  href="clothes.php" data-bs-toggle="dropdown" aria-expanded="false">
             Clothes
           </a>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">Dresses</a></li>
-            <li><a class="dropdown-item" href="#">T-shirts</a></li>
-            <li><a class="dropdown-item" href="#">Pants</a></li>
-        </ul>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="clothesFilter.php?cloth_type=dress">Dresses</a></li>
+            <li><a class="dropdown-item" href="clothesFilter.php?cloth_type=t-shirt">T-shirts</a></li>
+            <li><a class="dropdown-item" href="clothesFilter.php?cloth_type=pants">Pants</a></li>
+            </ul>
         </div>
-
-         
+        
         <li class="nav-item">
           <div class="position-absolute top-50 start-100 translate-middle">
              <?php 

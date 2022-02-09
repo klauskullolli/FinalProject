@@ -25,7 +25,8 @@
         global $pdo;
         return $pdo->query($sql);
     }
-
+    
+    
     function delete($table, $id) {
         try {
             $sql = "delete from $table where id=:id";

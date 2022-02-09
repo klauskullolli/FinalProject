@@ -81,6 +81,7 @@ if(isset($_POST['submit'])){
 }
 ?>
 
+<h1>Add New Clothes</h1>
 <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST"  enctype="multipart/form-data">
     <!-- Type -->
    <div class= "mb-3">

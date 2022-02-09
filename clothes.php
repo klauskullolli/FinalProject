@@ -5,7 +5,7 @@ require_once 'common/header.php';
 
 ?>
 
-
+<h1>Clothes</h1>
 <script>
 
 
@@ -33,39 +33,41 @@ require_once 'common/header.php';
             }
             else {
                 var length = clothes.length-1 ;
-            for (var i in clothes){
-                
-                var cell = `
-                            <div class="col">
-                                <h3 class="text-info">${capitalizeFirstLetter(clothes[i]['type'])}</h3>
-                                <a href="clothPanel.php?id=\'${clothes[i]["id"]}\'"><img src="${clothes[i]["image"]}" width="200" , height="200"></a>
-                                <h3 class="text-info">Price ${clothes[i]['price']}$</h3>
-                            </div>
-                            `;
-                            
-                if(j==1){
-                    grid = row + cell ;
-                }
-                
-                else if( i==length || j==3){
-                    grid = grid + cell + '</div>' ;
-                    j==0 ;
-                    console.log("yes") ;
-                }
-                else{
+                for (var i in clothes){
+                    
+                    var cell = `
+                                <div class="col">
+                                    <h3 class="text-info">${capitalizeFirstLetter(clothes[i]['type'])}</h3>
+                                    <a href="clothPanel.php?cloth_id=${clothes[i]["id"]}"><img src="${clothes[i]["image"]}"  width="200" height="200"></a>
+                                    <h3 class="text-info">Price ${clothes[i]['price']}$</h3>
+                                </div>
+                                `;
+                                
+                    if(j==1){
+                        grid = grid + row ;
+                    }
+                   
                     grid = grid + cell ;
+                    
+                    if(j==3 || i==length){
+                        grid = grid + '</div>' ;
+                        j=0 ;
+                    }
+                    j++ ;
+                    
                 }
-                j++ ;
-                console.log(grid) ;
+
+            panel.innerHTML = panel.innerHTML + grid ;
             }
-            panel.innerHTML = panel.innerHTML + grid + "</div>" ;
-            }
-            
-    }
-    } ; 
+        
+    } ;  
     
+   
+    
+   
 
 </script>
 
 
-
+    </body>
+</html>

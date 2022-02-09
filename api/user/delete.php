@@ -16,7 +16,7 @@ $deleted = delete("user" ,$id) ;
 
 if($deleted) {
     http_response_code(204);
-    echo "User deleted successfully";
+    echo json_encode("User deleted successfully");
 }
 else {
     http_response_code(400);

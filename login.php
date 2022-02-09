@@ -74,6 +74,7 @@ $reset_form = false;
   <button name="submit" type="submit" class="btn btn-primary">Login</button>
 </form>
 
+<a href="registration.php">Create a new account</a>
 <?php
 require_once "common/footer.php" ;
 ?>
