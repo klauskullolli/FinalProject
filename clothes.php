@@ -61,13 +61,12 @@ require_once 'common/header.php';
             }
         
     } ;  
-    
+    }
    
     
    
 
 </script>
 
-
-    </body>
+</body>
 </html>
