@@ -27,7 +27,6 @@ $totalPrice = 0 ;
     <th scope="col">Price</th>
     <th scope="col">Amount</th>
     <th scope="col">Total Price</th>
-
     </tr>
 </thead>
 <tbody>
@@ -35,16 +34,14 @@ $totalPrice = 0 ;
     foreach ($rows as $row) {
         $totalPrice = $totalPrice + $row['total_price'] ;
         echo '<tr>
-            <th scope="row">'. $row['id'] . '</th>
-            <td><img src=\''.trim($row['image']).'\' alt="Not Found" width="70" height="70"></td>
-            <td>' .ucfirst($row['type']) . '</td>
-            <td>' . ucfirst($row['gender']) . '</td>
-            <td>' . ucfirst($row['size']) . '</td>
-            <td>' . $row['price'] . '</td>
-            <td>' . $row['amount'] . '</td>
-            <td>' . $row['total_price'] . '</td>
-            </td>
-        </tr>';
+                <th scope="row">'. $row['id'] . '</th>
+                <td><img src=\''.trim($row['image']).'\' alt="Not Found" width="70" height="70"></td>
+                <td>' .ucfirst($row['type']) . '</td>
+                <td>' . ucfirst($row['gender']) . '</td>
+                <td>' . ucfirst($row['size']) . '</td>
+                <td>' . $row['price'] . '</td>
+                <td>' . $row['amount'] . '</td>
+                <td>' . $row['total_price'] . '</td></tr>';
         }
     ?>
 

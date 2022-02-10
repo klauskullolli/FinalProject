@@ -89,8 +89,8 @@ if(isset($_POST['submit'])){
     <label for="type" class="form-label">Type</label>
     <select name="type" id="type" class="form-control">
         <option value="dress">Dress</option>
-        <option value="t-Shirt" selected>T-Shirt</option>
-        <option value="t-Shirt" selected>Pants</option>
+        <option value="t-Shirt">T-Shirt</option>
+        <option value="pants" selected>Pants</option>
 
     </select>
 
