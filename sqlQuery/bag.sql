@@ -5,7 +5,10 @@ CREATE TABLE IF NOT EXISTS `bag` (
     size VARCHAR(255) NOT NULL,
     price FLOAT NOT NULL,
     amount int NOT NUll,
-    total_price float price*amount,
+    total_price float NOT NULL,
     image VARCHAR(255) NOT NULL 
 
 )ENGINE=INNODB;
+
+
+DROP TABLE IF EXISTS `bag` ; 

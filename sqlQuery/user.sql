@@ -8,3 +8,4 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`username`, `password`,`created_at`, `role`) VALUES ('cindy', 'sindi123', current_timestamp(), 'user');
 INSERT INTO `user` (`username`, `password`,`created_at`, `role`) VALUES ('klaus', 'klaus123', current_timestamp(), 'admin');
+

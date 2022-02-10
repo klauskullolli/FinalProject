@@ -62,7 +62,6 @@ $totalPrice = 0 ;
 <br>
 <button name="submit"  class="btn btn-primary">Print Bill</button>
 
-<br>
 
 <?php
 require_once "common/footer.php" ;
