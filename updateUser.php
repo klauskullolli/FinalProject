@@ -46,9 +46,8 @@ $reset_form = false;
 
 
             if (count($validation_messages) === 0) {
-                $hashed_password = password_hash($trimmed_password, PASSWORD_DEFAULT);
-                $data = array('username' => $clean['username'], 'password' => $hashed_password, 'role' => 'costumer');
-                if (update_record('user', $data, $user_id)) {
+                $data = array('username' => $clean['username'], 'password' => $trimmed_password);
+                if (update_record('user', $data, array("id"=>$user_id))) {
                     $reset_form = true;
                     echo '<div class="alert alert-success" role="alert">
                             User registered successfully!

@@ -30,17 +30,22 @@ if (isset($_POST['submit'])) {
         "total_price" => $data["price"]*$_POST['amount'],
         "image" => $data["image"]
     );
+    $updated= true ;
     $stock = $data["stock"] - $_POST['amount'] ; 
-   
+    print_r( $stock );
+
     if($stock<=0){
-        delete("clothes" ,intval($data["id"])) ;
+        $updated=delete("clothes" ,intval($data["id"])) ;
     }
     else{
-        $update = array("stock"=>$stock) ;
-        $updated = update_record("clothes" ,$update, intval($data["id"])) ;
+        $update = array("stock" =>$stock) ;
+        $updated = update_record("clothes" ,$update, array("id"=>$data["id"])) ;
     }
 
-    if (insert_record('bag', $data) && $updated ) {
+    if ( $updated && insert_record('bag', $product)) {
+
+        header('Location: bag.php');
+
         echo '<div class="alert alert-success" role="alert">
                 Product bought successfully!
             </div>';
@@ -48,6 +53,8 @@ if (isset($_POST['submit'])) {
         echo '<div class="alert alert-danger" role="alert">
                 Product purchase failed!</div>';
     }
+
+
 }
 
 

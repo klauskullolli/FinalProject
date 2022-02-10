@@ -1,4 +1,5 @@
     
+    <br>
     <div id="footer">
         <?php 
             echo "Copyleft &copy; Clothes-Store " . date('Y');
