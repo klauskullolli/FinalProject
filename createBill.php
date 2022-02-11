@@ -15,12 +15,14 @@ if ($totalFiles){
 }
  
 $bag = select_all("bag") ;
-if($bag->rowCount()<=0){
+ 
+
+if($bag->rowCount()==0){
     header('Location: alert.php?msg=You have not bought any product!');
 }
-
-$totalPrice = 0 ;
-$data= '<h2>Bill Nr.'.($countFile+1).'</h2>
+else {
+    $totalPrice = 0 ;
+    $data= '<h2>Bill Nr.'.($countFile+1).'</h2>
         <table class="table table-striped">
         <thead>
             <tr>
@@ -42,7 +44,7 @@ $data= '<h2>Bill Nr.'.($countFile+1).'</h2>
             $totalPrice = $totalPrice + $row['total_price'] ;
             $line= '<tr>
                     <td scope="row">'. $row['id'] . '</td>
-                    <td>' .ucfirst($row['type']) . '</td>
+                    <td>' . ucfirst($row['type']) . '</td>
                     <td>' . ucfirst($row['gender']) . '</td>
                     <td>' . ucfirst($row['size']) . '</td>
                     <td>' . $row['price'] . '</td>
@@ -51,28 +53,44 @@ $data= '<h2>Bill Nr.'.($countFile+1).'</h2>
             $data = $data.$line ;
     }
 
-$bottom = '<tr>
-            <td><b>Total: </b> </td>
-            <td colspan="2">-------------------------------------</td>
-            <td colspan="1">-------------------------------------</td>
-            <td colspan="2">-------------------------------------</td>
-            <td><b>.'.$totalPrice.'</b></td>
-            </tr>
-        </tbody> 
-        </table> ' ;
-$data = $data.$bottom ;
-$dompdf = new Dompdf();
-$dompdf->loadHtml($data);
-$dompdf->setPaper('A4', 'landscape');
-$dompdf->render();
-$path = "bills/Bill".($countFile+1).".pdf" ;
-$success =file_put_contents($path , $dompdf->output()) ; 
+    $bottom = '<tr>
+                <td><b>Total: </b> </td>
+                <td colspan="2">-------------------------------------</td>
+                <td colspan="1">-------------------------------------</td>
+                <td colspan="2">-------------------------------------</td>
+                <td><b>.'.$totalPrice.'</b></td>
+                </tr>
+            </tbody> 
+            </table> ' ;
+    $data = $data.$bottom ;
+    $dompdf = new Dompdf();
+    $dompdf->loadHtml($data);
+    $dompdf->setPaper('A4', 'landscape');
+    $dompdf->render();
+    $path = "bills/Bill".($countFile+1).".pdf" ;
+    $success =file_put_contents($path , $dompdf->output()) ; 
 
-if($success){
-    header('Location:'.$path);
-}else{
-    header('Location: alert.php?msg=Bill printing failed!');
+    if($success){
+        $sql = "DROP TABLE IF EXISTS `bag` ;" ;
+        $pdo->exec($sql) ; 
+
+        $sql = "CREATE TABLE IF NOT EXISTS `bag` (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            type VARCHAR(255) NOT NULL , 
+            gender VARCHAR(255) NOT NUll , 
+            size VARCHAR(255) NOT NULL,
+            price FLOAT NOT NULL,
+            amount int NOT NUll,
+            total_price float NOT NULL,
+            image VARCHAR(255) NOT NULL 
+
+        )ENGINE=INNODB; " ;
+
+        $pdo->exec($sql) ; 
+        header('Location:'.$path);
+    }else{
+        header('Location: alert.php?msg=Bill printing failed!');
+    }
 }
-
 
 ?>

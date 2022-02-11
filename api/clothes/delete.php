@@ -11,11 +11,14 @@ require_once __DIR__."/../../db/conn.php" ;
 $data = json_decode(file_get_contents("php://input")) ; 
 
 $id = $data->id ; 
-
+$path = select_by_properties("clothes" ,array("id"=>$id))[0]["image"] ;
+$temp= explode("//", $path) ;
+$path = implode("/" , $temp) ;
 $deleted = delete("clothes" ,$id) ; 
 
 if($deleted) {
     http_response_code(204);
+    unlink($path) ;
     echo json_encode("User deleted successfully");
 }
 else {

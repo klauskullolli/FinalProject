@@ -27,7 +27,7 @@
             <a class="nav-link" aria-current="page" href="login.php">Login</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="addClothes.php">Add Clothes</a>
+            <a class="nav-link" aria-current="page" href="clothesAdmin.php">Clothes Panel</a>
         </li>
 
         <div class="dropdown">
@@ -40,7 +40,9 @@
             <li><a class="dropdown-item" href="clothesFilter.php?cloth_type=pants">Pants</a></li>
             </ul>
         </div>
-        
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="bag.php">Bag</a>
+        </li>
         <li class="nav-item">
           <div class="position-absolute top-50 start-100 translate-middle">
              <?php 

@@ -11,7 +11,10 @@ require_once 'db/conn.php';
 
 $rows = select_all('bag');
 $totalPrice = 0 ;
+if (isset($_POST['submit'])){
 
+    header('Location: createBill.php');
+}
 ?>
 
 <h2>Bag</h2>
@@ -57,7 +60,10 @@ $totalPrice = 0 ;
 </table> 
 
 <br>
-<button name="submit"  class="btn btn-primary">Print Bill</button>
+<form action="<?php echo "createBill.php"?>" method="POST">
+    <button name="submit" type="submit" class="btn btn-primary">Print Bill</button>
+</form>
+
 
 
 <?php

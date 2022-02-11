@@ -17,7 +17,6 @@ if(isset($_POST['submit'])){
 
     if($_POST["price"]<=0){
         $validation_messages["price"]= "Price can't be empty ore negative";
-        echo "empty" ; 
     }
     else{
         $clean['price'] =$_POST['price'];
@@ -25,7 +24,6 @@ if(isset($_POST['submit'])){
 
     if($_POST["stock"]<=0){
         $validation_messages["stock"]= "Stock can't be empty ore negative";
-        echo "empty" ; 
     }
     else{
         $clean['stock'] =$_POST['stock'];
@@ -33,7 +31,6 @@ if(isset($_POST['submit'])){
     
 
     if(isset($_FILES['image'])){
-        $errors= array();
         $file_name = $_FILES['image']['name'];
         $file_tmp =$_FILES['image']['tmp_name'];
         $file_type=$_FILES['image']['type'];

@@ -76,6 +76,23 @@
             return false;
         }
     }
+     
+    function select_by_properties($table ,$filters){
+        try {
+            $map_func = function($el) {
+                return "$el=:$el";
+            };
+            global $pdo;
+            $filters_placeholders = implode(" and ", array_map($map_func, array_keys($filters)));  //join array el with a string
+            $sql = "select * from $table  where $filters_placeholders";
+            $stmt = $pdo -> prepare($sql);
+            $stmt -> execute($filters);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $ex) {
+            echo $ex -> getMessage() . '<br>';
+            return null;
+        }
+    }
 
     function res_from_query($query) {
         global $pdo;
