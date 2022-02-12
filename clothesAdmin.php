@@ -38,7 +38,7 @@ $rows = select_all('clothes');
             <td>' . $row['stock'] . '</td>
             <td><img src=\''.trim($row['image']).'\' alt="Not Found" width="70" height="70"></td>
             <td>
-                <a class="btn btn-primary" href="updateClothes.php?cloth_id=' . $row['id'] .'">Update</a>
+                <a class="btn btn-primary" href="updateCloth.php?cloth_id=' . $row['id'] .'">Update</a>
                 <button class="btn btn-danger delete" id="'. $row['id'] .'">Delete</button>
             </td>
         </tr>';

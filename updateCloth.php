@@ -15,10 +15,10 @@ $reset_form = false;
 // }  
 //else{ 
 
-    if(isset($_GET['user_id'])){
+    if(isset($_GET['cloth_id'])){
 
         $cloth_id = $_GET['cloth_id'];
-        $data = select_by_properties("clothes" ,array("id"=>$cloth_id));
+        $data = select_by_properties("clothes" ,array("id"=>$cloth_id))[0];
         
         if (isset($_POST['submit'])) {
             $clean = array();
@@ -40,22 +40,22 @@ $reset_form = false;
 
 
             if (count($validation_messages) === 0) {
-                
-                if (update_record('user', $clean, array("id"=>$user_id))) {
-                    $reset_form = true;
+                if (update_record('clothes', $clean, array("id"=>$cloth_id))) {
                     echo '<div class="alert alert-success" role="alert">
                             Cloth updated successfully!
-                        </div>';
+                        </div>';   
+                        header('Location: clothesAdmin.php'); 
                 } else {
                     echo '<div class="alert alert-danger" role="alert">
                          Cloth updating failed!</div>';
+
                 }
             }
         }
     }
 ?>
 
-<form method="POST" action="clothesAdmin.php">  
+<form method="POST" >  
 <div class="mb-3">
     <div class="row" style="margin-top: 50px;">
         <div class="col">
@@ -76,7 +76,7 @@ $reset_form = false;
             value="<?php echo ucfirst($data["size"])?>" readonly>
             
             <label for="price" class="form-label">Price</label>
-            <input type="number" class="form-control" id="price" name="price"
+            <input type="number" class="form-control" id="price" name="price" step="0.01"
             value="<?php echo (isset($_POST['price'])) ? 
                         htmlentities($_POST['price']) : 
                     ''; ?>" >
