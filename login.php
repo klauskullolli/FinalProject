@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+
+
 $title = 'Login';
 
 require_once 'common/header.php';
@@ -23,17 +26,27 @@ $reset_form = false;
 
 
         if (count($validation_messages) === 0) {
-            $sql = 'select username, password from user where username = :username';
+            $sql = 'select * from user where username = :username';
             $stmt = $pdo -> prepare($sql);
             $stmt -> bindParam(":username", $trimmed_username);
             $stmt -> execute();
             if ($stmt -> rowCount() === 1) {
-                $user_row = $stmt -> fetch();
-                if (password_verify($trimmed_password, $user_row['password'])) {
-                    // $_SESSION['authenticated'] = true;
-                    // $_SESSION['username'] = $user_row['username'];
+                $user_row = $stmt -> fetch(PDO::FETCH_ASSOC);
+                if (strcmp($trimmed_password, $user_row['password'])==0) {
+                    $_SESSION['authenticated'] = true;
+                    $_SESSION['role'] = $user_row['role'];
+                    $_SESSION['username'] = $user_row['username'];
+                    $_SESSION['id'] =  $user_row['id'];
                     // echo '<div class="alert alert-success" role="alert">
                     //         You are authenticated as {username}' . $_SESSION['username'].'</div>';
+                    $reset_form = true ;
+
+                    if( strcmp($_SESSION['role'],"admin")==0){
+                        header('Location: clothesAdmin.php?username='.$_SESSION['username']);
+                    }
+                    else{
+                        header('Location: clothes.php?username='.$_SESSION['username']);
+                    }
                 } else {
                     $validation_messages['password'] = 'Incorrect username or password';
                 }
@@ -48,7 +61,7 @@ $reset_form = false;
     Login
 </h1>
 
-<form action="<?php echo isset($_SESSION['username'])? "#":"#"?>" method="POST">
+<form action="" method="POST">
   <div class="mb-3">
     <label for="username" class="form-label">Username</label>
     <input type="text" class="form-control" id="username" name="username"

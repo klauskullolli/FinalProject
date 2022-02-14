@@ -1,12 +1,16 @@
 <?php
-require_once "common/header.php";
 require_once 'dompdf/autoload.inc.php';
 require_once "db/conn.php" ; 
 use Dompdf\Dompdf;
 
-use FontLib\Table\Type\head;
+session_start() ;
 
-//number of bills
+if( strcmp($_SESSION['role'],"user")!=0){
+    header('Location: alert.php?msg=You are not a user! You should login as a user.');   
+}
+
+else{
+    //number of bills
 $folderPath = "bills/";
 $countFile = 0;
 $totalFiles = glob($folderPath . "*");
@@ -23,6 +27,8 @@ if($bag->rowCount()==0){
 else {
     $totalPrice = 0 ;
     $data= '<h2>Bill Nr.'.($countFile+1).'</h2>
+        <h4>ID, Username: '.$_SESSION["id"].'&nbsp;&nbsp;'.$_SESSION["username"].'</h4>
+        <h4>Date: '.date("Y-m-d H:i:s").'</h4>
         <table class="table table-striped">
         <thead>
             <tr>
@@ -68,9 +74,11 @@ else {
     $dompdf->setPaper('A4', 'landscape');
     $dompdf->render();
     $path = "bills/Bill".($countFile+1).".pdf" ;
-    $success =file_put_contents($path , $dompdf->output()) ; 
+    $bill = array('file'=>$path , "userId"=>$_SESSION["id"] , "price"=>$totalPrice) ;
+    $success=insert_record("bill", $bill) ;
+    
 
-    if($success){
+    if($success && file_put_contents($path , $dompdf->output())){
         $sql = "DROP TABLE IF EXISTS `bag` ;" ;
         $pdo->exec($sql) ; 
 
@@ -92,5 +100,8 @@ else {
         header('Location: alert.php?msg=Bill printing failed!');
     }
 }
+}
+
+
 
 ?>

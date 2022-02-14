@@ -1,6 +1,6 @@
 <?php
 $title= "Create colthes" ; 
-include_once "common/header.php" ;
+include_once "common/headerAdmin.php" ;
 include_once "db/conn.php" ; 
 
 

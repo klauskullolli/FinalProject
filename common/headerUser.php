@@ -19,17 +19,11 @@
     <a class="navbar-brand"  href="clothes.php">Shop</a>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="user.php">Users</a>
-        </li>  
-        
+       
         <li class="nav-item">
             <a class="nav-link" aria-current="page" href="login.php">Login</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="clothesAdmin.php">Clothes Panel</a>
-        </li>
-
+     
         <div class="dropdown">
         <a class="nav-link dropdown-toggle" id="dropdownMenuLink" role="button"  href="clothes.php" data-bs-toggle="dropdown" aria-expanded="false">
             Clothes
@@ -52,8 +46,19 @@
              ?>
           </div>
         </li>
+         
+        <?php 
+            if(!isset($_SESSION["authenticated"])){
+                header('Location: login.php');   
+              }
 
-       
+            if( strcmp($_SESSION['role'],"user")!=0){
+                header('Location: alert.php?msg=You are not a user! You should login as a user.');   
+            }
+         ?>
+
+
+        
     </ul>
     </div>
 </div>

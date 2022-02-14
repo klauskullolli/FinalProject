@@ -1,5 +1,5 @@
 <?php
-  session_start() ;
+   session_start() ;
 ?>
 <!doctype html>
 <html lang="en">
@@ -16,7 +16,7 @@
 <div class="container">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <div class="container-fluid">
-    <a class="navbar-brand"  href="clothes.php">Shop</a>
+    <a class="navbar-brand"  href="clothesAdmin.php">Clothes Panel</a>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
         <li class="nav-item">
@@ -26,23 +26,11 @@
         <li class="nav-item">
             <a class="nav-link" aria-current="page" href="login.php">Login</a>
         </li>
+
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="clothesAdmin.php">Clothes Panel</a>
+            <a class="nav-link" aria-current="page" href="bills.php">Bills</a>
         </li>
 
-        <div class="dropdown">
-        <a class="nav-link dropdown-toggle" id="dropdownMenuLink" role="button"  href="clothes.php" data-bs-toggle="dropdown" aria-expanded="false">
-            Clothes
-          </a>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="clothesFilter.php?cloth_type=dress">Dresses</a></li>
-            <li><a class="dropdown-item" href="clothesFilter.php?cloth_type=t-shirt">T-shirts</a></li>
-            <li><a class="dropdown-item" href="clothesFilter.php?cloth_type=pants">Pants</a></li>
-            </ul>
-        </div>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="bag.php">Bag</a>
-        </li>
         <li class="nav-item">
           <div class="position-absolute top-50 start-100 translate-middle">
              <?php 
@@ -52,8 +40,15 @@
              ?>
           </div>
         </li>
-
-       
+         <?php 
+            if(!isset($_SESSION["authenticated"])){
+                header('Location: login.php');   
+              }
+              if( strcmp($_SESSION['role'],"admin")!=0){
+                header('Location: alert.php?msg=You are not a Admin! You should login as a Admin.');   
+            }
+         ?>
+      
     </ul>
     </div>
 </div>

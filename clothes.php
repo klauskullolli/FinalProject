@@ -1,7 +1,7 @@
 <?php
 
 $title = "Clothes" ; 
-require_once 'common/header.php';
+require_once 'common/headerUser.php';
 
 ?>
 

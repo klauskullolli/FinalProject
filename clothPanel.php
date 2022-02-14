@@ -1,5 +1,7 @@
 <?php
- require_once "common/header.php" ; 
+
+ $title  ="Cloth Panel" ; 
+ require_once "common/headerUser.php" ; 
  require_once "db/conn.php" ; 
  
  if(isset($_GET['cloth_id'])){

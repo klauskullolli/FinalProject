@@ -1,7 +1,7 @@
 <?php
 $title = 'Update User';
 
-require_once 'common/header.php';
+require_once 'common/headerAdmin.php';
 require_once 'db/conn.php';
 
 $reset_form = false;

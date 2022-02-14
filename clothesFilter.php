@@ -1,7 +1,7 @@
 <?php
 
 $title = "Clothes Filter" ; 
-require_once 'common/header.php';
+require_once 'common/headerUser.php';
 
 
 $cloth_type= $_GET['cloth_type'];
