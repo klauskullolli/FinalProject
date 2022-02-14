@@ -5,9 +5,7 @@ $title = "Users";
 require_once 'common/headerAdmin.php';
 require_once 'db/conn.php';
 
-// if(!isset($_SESSION["authenticated"])){
-//     header('Location: login.php');
-// }
+
 
 $rows = select_all('user');
 ?>

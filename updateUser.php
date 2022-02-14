@@ -6,14 +6,7 @@ require_once 'db/conn.php';
 
 $reset_form = false;
 
-// if(!isset($_SESSION["authenticated"])){
-//     header('Location: login.php');
-//   }
 
-// if(strcmp($_SESSION['role'],"admin")!==0){
-//     header('Location: alert.php');
-// }  
-//else{ 
 
     if(isset($_GET['user_id'])){
         $user_id = $_GET['user_id'];

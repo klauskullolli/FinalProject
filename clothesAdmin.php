@@ -1,13 +1,10 @@
 <?php 
-//view all users registered till now
+
 $title = "All Clothes";
 
 require_once 'common/headerAdmin.php';
 require_once 'db/conn.php';
 
-// if(!isset($_SESSION["authenticated"])){
-//     header('Location: login.php');
-// }
 
 $rows = select_all('clothes');
 ?>

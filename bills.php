@@ -1,5 +1,5 @@
 <?php 
-//view all users registered till now
+
 $title = "Bills";
 
 require_once 'common/headerAdmin.php';

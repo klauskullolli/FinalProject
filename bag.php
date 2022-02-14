@@ -1,6 +1,6 @@
 <?php 
-//view all users registered till now
-$title = "Users";
+
+$title = "Bag";
 
 require_once 'common/headerUser.php';
 require_once 'db/conn.php';
